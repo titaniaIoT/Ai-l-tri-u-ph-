@@ -11,6 +11,61 @@
 </head>
 <body onload="on_start()">
     <div class="container">
+        <!-- loginscreen---------------------------------------------------------------------------------------------------- -->
+        <div class="screen" id="login_screen">
+            <div class="bgr_img" id="login_img"></div>
+            <div class="login_element">
+            <button onclick="login_as_player()">Người chơi</button>
+            <button onclick="show_admin_login()">Quản trị viên</button>
+            <div id="admin_login" class="hidden">
+                <input type="password" id="admin_password" placeholder="Nhập mật khẩu">
+                <button onclick="login_as_admin()">Đăng nhập</button>
+                <div id="error_message" style="color: red;"></div>
+            </div>
+        </div>
+        </div>
+        <!-- adminscreen---------------------------------------------------------------------------------------------------- -->
+        <div class="screen" id="admin_screen">
+            <div class="admin_element">
+                <div class="header_admin">
+                <input type="text" id="search_input" placeholder="Nhập từ khóa để tìm kiếm câu hỏi">
+                <button id ="search_button" onclick="search_question()">Tìm kiếm câu hỏi</button>
+                <button onclick="fetch_data_admin()">Lấy dữ liệu</button>
+                <button onclick="show_add_question_form()">Thêm câu hỏi</button>
+            </div>
+                <div id="add_question_form" class="hidden">
+                    <h3>Thêm câu hỏi mới</h3>
+                    <label for="new_question">Câu hỏi:</label>
+                    <input type="text" id="new_question" placeholder="Nhập câu hỏi">
+            
+                    <label for="answer_1">Đáp án A:</label>
+                    <input type="text" id="answer_1" placeholder="Nhập đáp án A">
+                    
+                    <label for="answer_2">Đáp án B:</label>
+                    <input type="text" id="answer_2" placeholder="Nhập đáp án B">
+                    
+                    <label for="answer_3">Đáp án C:</label>
+                    <input type="text" id="answer_3" placeholder="Nhập đáp án C">
+                    
+                    <label for="answer_4">Đáp án D:</label>
+                    <input type="text" id="answer_4" placeholder="Nhập đáp án D">
+            
+                    <label for="correct_answer">Đáp án đúng:</label>
+                    <select id="correct_answer">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                    </select>
+                    <div class="button_container_admin">
+                        <button onclick="add_new_question()">Gửi</button>
+                        <button onclick="cancel_add_new_question()">Hủy</button>
+                    </div>
+                </div>
+                <div id="admin_data" ></div>
+            </div>
+        </div>
+        <!-- startscreen---------------------------------------------------------------------------------------------------- -->
         <div class="screen" id="start_screen">
             <div class="bgr_img" id="start_img"></div>
             <div class="input_container">
@@ -32,6 +87,7 @@
                     </div>
                 </div>
         </div>
+        <!-- gamescreen---------------------------------------------------------------------------------------------------- -->
         <div class="screen" id="game_screen">
             <div class="bgr_img" id="game_img"></div>
             <div id="game">
@@ -39,7 +95,6 @@
                     <div class="left_pane_game">
                         <div id="info_table_wrapper">
                             <table id="info_table">
-                                <!-- Các hàng và cột của bảng -->
                             </table>
                         </div>                        
                     </div>
@@ -69,7 +124,7 @@
                 </div>
             </div>
         </div>
-            
+        <!-- resultscreen---------------------------------------------------------------------------------------------------- -->
         <div class="screen" id="result_screen">
             <div class="content_wrapper">
                 <div class="left_pane_result">
@@ -119,14 +174,25 @@
                     </div>
                 </div>
             </div>
-        
+
     </div>
-    <!-- Hộp thoại thông báo -->
+    <!-- Hộp thoại thông báo ---------------------------------------------------------------------------------------------------------->
     <div id="notification" class="notification hidden">
         <p id="notification_message"></p>
         <button onclick="close_notification()">OK</button>
     </div>
-
+    <!-- Hộp thoại confirm--------------------------------------------------------------------------------------------------------- -->
+    <div id="notification_confirm" class="notification hidden">
+        <p id="notification_message_confirm"></p>
+        <div class="button_confirm">
+        <button id="No" onclick="continue_work()">Không</button>
+        <button id="Yes" onclick="cancel()">Có</button>
+    </div>
+    </div>
+     <!-- Biểu tượng loading------------------------------------------------------------------------------------------------------- -->
+    <div id="loading" class="hidden">
+        Vui lòng đợi trong giây lát...
+    </div>
     <script src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
